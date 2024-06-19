@@ -1,7 +1,5 @@
 # ministore_backend_tutorial
 
-สร้าง Database ตาม Script ต่อไปนี้
-
 ขั้นตอนการใช้งาน
 1. สร้าง Database ด้วยคำสั่งในไฟล์ CreateDB.sql
 2. ติดตั้ง Package โดยใช้คำสั่ง npm install
