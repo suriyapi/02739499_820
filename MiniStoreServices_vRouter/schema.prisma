@@ -65,6 +65,14 @@ model Products {
   OrderDetail OrderDetail[]
 }
 
+model Users {
+  UserName String  @unique(map: "Users_UNIQUE") @db.VarChar(100)
+  UserID   Int     @id @default(autoincrement())
+  Password String  @db.VarChar(100)
+  Status   String? @db.VarChar(100)
+  Role     String? @db.VarChar(100)
+}
+
 enum Orders_order_status {
   processing
   completed
