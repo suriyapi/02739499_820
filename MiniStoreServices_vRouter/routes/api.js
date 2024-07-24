@@ -1,5 +1,6 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
+
 const apiLimiter = rateLimit({
     windowMs: 1000*60*3,   // 3 minutes
     max: 10,
@@ -8,14 +9,20 @@ const apiLimiter = rateLimit({
 const router = express.Router();
 const customerController = require('../controllers/customers');
 const orderController = require('../controllers/orders');
+const authController = require('../controllers/auth');
+const userController = require('../controllers/users');
 
 router.post('/customers', apiLimiter, customerController.createCustomer);
 router.put('/customers', apiLimiter, customerController.updateCustomer);
 router.delete('/customers/:id', apiLimiter, customerController.deleteCustomer);
 router.get('/customers/:id', customerController.getCustomer);
 router.get('/customers/q/:term', apiLimiter, customerController.getCustomersByTerm);
-router.get('/customers', apiLimiter, customerController.getCustomers);
+router.get('/customers', authController.verifyToken, customerController.getCustomers);
 router.post('/orders', apiLimiter, orderController.createOrder);
+
+router.post('/users', userController.createUser);
+router.post('/login', authController.login);
+router.get('/logout', authController.logout);
 
 module.exports = router;
 
