@@ -9,4 +9,4 @@
 - API Documentation using Swagger
 
 โครงสร้างฐานข้อมูลเบื้องต้น
-<img width="1215" alt="image" src="https://github.com/psaku/ministore_backend_tutorial/assets/41256576/4a2afeaa-719b-4385-945a-74aa477117f4">
+<img width="1084" alt="image" src="https://github.com/user-attachments/assets/0fd438ac-5d1b-42df-808c-95c250e4f85a">
