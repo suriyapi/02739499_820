@@ -54,3 +54,15 @@ CREATE TABLE Payments (
   payment_status ENUM('pending', 'completed', 'failed'),
   FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
+
+-- MiniStore.Users definition
+
+CREATE TABLE `Users` (
+  `UserName` varchar(100) NOT NULL,
+  `UserID` int NOT NULL AUTO_INCREMENT,
+  `Password` varchar(100) NOT NULL,
+  `Status` varchar(100) DEFAULT NULL,
+  `Role` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`UserID`),
+  UNIQUE KEY `Users_UNIQUE` (`UserName`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
