@@ -21,6 +21,7 @@ app.use('/api/v2', apiv2Router);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpecs));
 
 const ssl_options = {
+
     key: fs.readFileSync('./ssl/key.pem'),
     cert: fs.readFileSync('./ssl/cert.pem')
 }

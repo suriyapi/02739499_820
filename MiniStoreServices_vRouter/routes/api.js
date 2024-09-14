@@ -3,7 +3,7 @@ const rateLimit = require('express-rate-limit');
 
 const apiLimiter = rateLimit({
     windowMs: 1000*60*3,   // 3 minutes
-    max: 10,
+    max: 100,
     message: 'Too many requests, please try again after 3 minutes!'
 });
 const router = express.Router();
@@ -13,11 +13,12 @@ const authController = require('../controllers/auth');
 const userController = require('../controllers/users');
 
 router.post('/customers', apiLimiter, customerController.createCustomer);
-router.put('/customers', apiLimiter, customerController.updateCustomer);
+router.put('/customers/:id', apiLimiter, customerController.updateCustomer);
 router.delete('/customers/:id', apiLimiter, customerController.deleteCustomer);
 router.get('/customers/:id', customerController.getCustomer);
 router.get('/customers/q/:term', apiLimiter, customerController.getCustomersByTerm);
-router.get('/customers', authController.verifyToken, customerController.getCustomers);
+//router.get('/customers', authController.verifyToken, customerController.getCustomers);
+router.get('/customers', apiLimiter, customerController.getCustomers);
 router.post('/orders', apiLimiter, orderController.createOrder);
 
 router.post('/users', userController.createUser);
