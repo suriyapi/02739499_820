@@ -45,16 +45,36 @@ const fetchData = () => {
 fetchData()
 
 const onEdit = (id) => {
-  alert('Edit: ' + id)
+  router.push('/update/'+ id)
 }
 
 
 const onDelete = (id) => {
-  alert('Delete: ' + id)
-}
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const requestOptions = {
+    method: 'DELETE',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  fetch(`http://localhost:8800/api/v1/customers/${id}`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      alert(result.message)
+      console.log(result)
+      if (result.status === 'ok') {
+        router.push('/')
+      }
+      fetchData()
+    })
+    .catch((error) => console.error('Error', error));
+};
 
 
 const onCreate = () => {
   router.push('/create')
+
 }
 </script>
